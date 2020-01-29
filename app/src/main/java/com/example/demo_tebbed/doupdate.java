@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -78,7 +79,12 @@ public class doupdate extends AppCompatActivity {
         sqbd = new SqliteDatabse(this);
 
         sqbd.addHospital(12344,"hello","hi","hello","hi","hello","hi","hello","hi","hello","hi");
-        fetchDataHospital();
+        //fetchDataHospital();
+        fetchDataBloodbank();
+       // fetchDataFacilities();
+        //fetchDataDoctor();
+
+
         Cursor c = sqbd.showData();
         if(c.getCount() == 0){
 
@@ -88,6 +94,7 @@ public class doupdate extends AppCompatActivity {
             while(c.moveToNext()){
                 buffer.append("ID : "+c.getString(0)+" \nName : "+c.getString(1)+"\nPassword : "+c.getString(2)+"\n");
                 Log.i("skjhf",buffer.toString());
+                Toast.makeText(this, ""+buffer.toString(), Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -107,7 +114,7 @@ public class doupdate extends AppCompatActivity {
                     JSONArray jsonArray = jsonObject.getJSONArray("bloodbank");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         jsonObject = jsonArray.getJSONObject(i);
-                        b_id = jsonObject.getInt("b_id");
+                        b_id = Integer.parseInt(jsonObject.getString("b_id"));
                         b_name = jsonObject.getString("b_name");
                         b_email = jsonObject.getString("b_email");
                         b_address = jsonObject.getString("b_address");
@@ -116,18 +123,18 @@ public class doupdate extends AppCompatActivity {
                         b_number = jsonObject.getString("b_number");
                         b_state = jsonObject.getString("b_state");
                         b_dist = jsonObject.getString("b_dist");
-                        b_ap = jsonObject.getInt("b_ap");
-                        b_an = jsonObject.getInt("b_an");
-                        b_bp = jsonObject.getInt("b_bp");
-                        b_bn = jsonObject.getInt("b_bn");
-                        b_op = jsonObject.getInt("b_op");
-                        b_on = jsonObject.getInt("b_on");
-                        b_abp = jsonObject.getInt("b_abp");
-                        b_abn = jsonObject.getInt("b_abn");
+                        b_ap = Integer.parseInt(jsonObject.getString("b_ap"));
+                        b_an = Integer.parseInt(jsonObject.getString("b_an"));
+                        b_bp = Integer.parseInt(jsonObject.getString("b_bp"));
+                        b_bn = Integer.parseInt(jsonObject.getString("b_bn"));
+                        b_op = Integer.parseInt(jsonObject.getString("b_op"));
+                        b_on = Integer.parseInt(jsonObject.getString("b_on"));
+                        b_abp =Integer.parseInt(jsonObject.getString("b_abp"));
+                        b_abn =Integer.parseInt(jsonObject.getString("b_abn"));
 
+                        System.out.println("bloodbank"+response);
                         hadd = sqbd.addBloodbank(b_id,b_name,b_email,b_address,b_website,b_location,b_number,b_state,b_dist,b_ap,b_an,b_bp,b_bn,b_op,b_on,b_abp,b_abn);
                     }
-                    System.out.println("bloodbank");
                     progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -149,7 +156,6 @@ public class doupdate extends AppCompatActivity {
         stringRequest = new StringRequest(Request.Method.GET, hurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                System.out.println("rerererere :"+response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray jsonArray = jsonObject.getJSONArray("hospitallist");
