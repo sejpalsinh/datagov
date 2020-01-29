@@ -2,8 +2,10 @@ package com.example.demo_tebbed;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -61,26 +63,30 @@ public class SqliteDatabse extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String createDB = "CREATE TABLE " + TABLE_HOSPITAL + " ("+COL_1 + " INTEGER PRIMARY KEY, " +COL_2+ " TEXT, "+ COL_3+ " TEXT, "+ COL_4+ " TEXT, "+ COL_5+ " TEXT, "+ COL_6+ " TEXT, "+ COL_7+ " TEXT, "+ COL_8+ " TEXT, "+ COL_9+ " TEXT, "+ COL_10+ " TEXT, "+ COL_11+ " TEXT)";
+        Log.i("marudatabase",createDB);
         db.execSQL(createDB);
-        String createF = "CREATE TABLE " + TABLE_FACILITIES + " ("+FCOL_1 + " INTEGER PRIMARY KEY , " +FCOL_2+ " TEXT, "+ FCOL_3+ " INTEGER)";
-        db.execSQL(createF);
-        String createD = "CREATE TABLE " + TABLE_DOCTOR + " ("+DCOL_1 + " INTEGER PRIMARY KEY, " +DCOL_2+ " TEXT, "+ DCOL_3+ " TEXT, "+ DCOL_4+ " TEXT, "+ DCOL_5+ " TEXT, "+ DCOL_6+ " INTEGER)";
-        db.execSQL(createD);
-        String createB = "CREATE TABLE " + TABLE_BLOODBANK + " ("+BCOL_1 + " INTEGER PRIMARY KEY, " +BCOL_2+ " TEXT, "+ BCOL_3+ " TEXT, "+BCOL_4+ " TEXT, "+ BCOL_5+ " TEXT, "+ BCOL_6+ " TEXT, "+ BCOL_7+ " TEXT, "+ BCOL_8+ " TEXT, "+ BCOL_9+ " TEXT, "+ BCOL_10+ " INTEGER, "+ BCOL_11+ " INTEGER, "+ BCOL_12+ " TEXT, "+ BCOL_13+ " INTEGER, "+ BCOL_14+ " INTEGER, "+ BCOL_15+ " INTEGER, "+ BCOL_16+ " INTEGER, "+ BCOL_17+ " INTEGER)";
-        db.execSQL(createB);
+////        String createF = "CREATE TABLE " + TABLE_FACILITIES + " ("+FCOL_1 + " INTEGER PRIMARY KEY , " +FCOL_2+ " TEXT, "+ FCOL_3+ " INTEGER)";
+//        db.execSQL(createF);
+//        String createD = "CREATE TABLE " + TABLE_DOCTOR + " ("+DCOL_1 + " INTEGER PRIMARY KEY, " +DCOL_2+ " TEXT, "+ DCOL_3+ " TEXT, "+ DCOL_4+ " TEXT, "+ DCOL_5+ " TEXT, "+ DCOL_6+ " INTEGER)";
+//        db.execSQL(createD);
+//        String createB = "CREATE TABLE " + TABLE_BLOODBANK + " ("+BCOL_1 + " INTEGER PRIMARY KEY, " +BCOL_2+ " TEXT, "+ BCOL_3+ " TEXT, "+BCOL_4+ " TEXT, "+ BCOL_5+ " TEXT, "+ BCOL_6+ " TEXT, "+ BCOL_7+ " TEXT, "+ BCOL_8+ " TEXT, "+ BCOL_9+ " TEXT, "+ BCOL_10+ " INTEGER, "+ BCOL_11+ " INTEGER, "+ BCOL_12+ " TEXT, "+ BCOL_13+ " INTEGER, "+ BCOL_14+ " INTEGER, "+ BCOL_15+ " INTEGER, "+ BCOL_16+ " INTEGER, "+ BCOL_17+ " INTEGER)";
+//        db.execSQL(createB);
 
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_HOSPITAL);
+        deleteAll();
         onCreate(db);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FACILITIES);
-        onCreate(db);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCTOR);
-        onCreate(db);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BLOODBANK);
-        onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FACILITIES);
+//        onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCTOR);
+//        onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BLOODBANK);
+//        onCreate(db);
     }
 
     public boolean addHospital(int hid,String hname,String hpgflag,String haddress,String hstate,String hdist,String hnumber,String hemail,String hwebsite ,String hlocation,String htime){
@@ -97,12 +103,22 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         contentValues.put(COL_9,hwebsite);
         contentValues.put(COL_10,hlocation);
         contentValues.put(COL_11,htime);
+
+        ifExists(hid);
+
         long result = db.insert(TABLE_HOSPITAL,null,contentValues);
         if(result == -1){
             return false;
         }else {
             return true;
         }
+
+    }
+
+    private void ifExists(int hid) {
+        SQLiteDatabase db =this.getWritableDatabase();
+        db.execSQL("delete FROM "+ TABLE_HOSPITAL + " WHERE " + COL_1 + " = " + hid, null);
+
     }
 
 
@@ -157,6 +173,8 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         contentValues.put(BCOL_16,babp);
         contentValues.put(BCOL_17,babn);
 
+
+
         long result = db.insert(TABLE_HOSPITAL,null,contentValues);
         if(result == -1){
             return false;
@@ -165,5 +183,20 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         }
     }
 
+    public Cursor showData(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
+        return res;
+    }
+    public void deleteAll()
+    {
+        //SQLiteDatabase db = this.getWritableDatabase();
+        // db.delete(TABLE_NAME,null,null);
+        //db.execSQL("delete * from"+ TABLE_NAME);
+        SQLiteDatabase db =this.getWritableDatabase();
+        db.execSQL("delete from " + TABLE_HOSPITAL);
+
+        db.close();
+    }
 
 }
