@@ -191,9 +191,34 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         SQLiteDatabase db =this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
         String r = cursorToString(res);
+        res.close();
         return r;
 
     }
+
+    public String showSelectedHospitals(String state, String district){
+        SQLiteDatabase db =this.getWritableDatabase();
+        //Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
+
+        if(district == null){
+            Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL + " WHERE " + COL_5 + " LIKE '%" + state + "%'", null);
+            String resSecHos = cursorToString(res);
+            res.close();
+            return resSecHos;
+        } else {
+            Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL + " WHERE " + COL_5 + " LIKE '%" + state + "%' " + " AND " + COL_6 + " LIKE '%" + district + "%'", null);
+            String resSecHos = cursorToString(res);
+            res.close();
+            return resSecHos;
+
+        }
+
+
+
+
+
+    }
+
     public Cursor showData(){
         SQLiteDatabase db =this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
@@ -218,6 +243,7 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         while (!crs.isAfterLast()) {
             int nColumns = crs.getColumnCount();
             JSONObject row = new JSONObject();
+
             for (int i = 0 ; i < nColumns ; i++) {
                 String colName = crs.getColumnName(i);
                 if (colName != null) {
@@ -234,6 +260,7 @@ public class SqliteDatabse extends SQLiteOpenHelper {
                     }
                 }
             }
+            Log.i("lowerSC", row.toString());
             arr.put(row);
             if (!crs.moveToNext())
                 break;
