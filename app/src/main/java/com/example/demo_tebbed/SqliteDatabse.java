@@ -9,6 +9,10 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SqliteDatabse extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "hospital.db";
     public static final String TABLE_HOSPITAL = "hospital";
@@ -183,11 +187,20 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         }
     }
 
+    public String showHospitals(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
+        String r = cursorToString(res);
+        return r;
+
+    }
     public Cursor showData(){
         SQLiteDatabase db =this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_BLOODBANK, null);
-        return res;
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
+        return (res);
     }
+
+
     public void deleteAll()
     {
         //SQLiteDatabase db = this.getWritableDatabase();
@@ -197,6 +210,36 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         db.execSQL("delete from " + TABLE_HOSPITAL);
 
         db.close();
+    }
+
+    public String cursorToString(Cursor crs) {
+        JSONArray arr = new JSONArray();
+        crs.moveToFirst();
+        while (!crs.isAfterLast()) {
+            int nColumns = crs.getColumnCount();
+            JSONObject row = new JSONObject();
+            for (int i = 0 ; i < nColumns ; i++) {
+                String colName = crs.getColumnName(i);
+                if (colName != null) {
+                    String val = "";
+                    try {
+                        switch (crs.getType(i)) {
+                            case Cursor.FIELD_TYPE_BLOB   : row.put(colName, crs.getBlob(i).toString()); break;
+                            case Cursor.FIELD_TYPE_FLOAT  : row.put(colName, crs.getDouble(i))         ; break;
+                            case Cursor.FIELD_TYPE_INTEGER: row.put(colName, crs.getLong(i))           ; break;
+                            case Cursor.FIELD_TYPE_NULL   : row.put(colName, null)                     ; break;
+                            case Cursor.FIELD_TYPE_STRING : row.put(colName, crs.getString(i))         ; break;
+                        }
+                    } catch (JSONException e) {
+                    }
+                }
+            }
+            arr.put(row);
+            if (!crs.moveToNext())
+                break;
+        }
+        crs.close(); // close the cursor
+        return arr.toString();
     }
 
 }

@@ -1,8 +1,14 @@
 package com.example.demo_tebbed;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +38,13 @@ public class SearchHospital extends AppCompatActivity {
     JSONArray arrAllStates;
     ArrayAdapter<String> adapterStates;
 
+    FragmentManager fragmentManager;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    SqliteDatabse sqbd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +56,39 @@ public class SearchHospital extends AppCompatActivity {
         allStates = new ArrayList<>();
         allDistricts = new ArrayList<>();
 
+        sqbd = new SqliteDatabse(this);
+
+        Cursor c = sqbd.showData();
+        if(c.getCount() == 0){
+
+            return;
+        }else{
+            StringBuffer buffer = new StringBuffer();
+            while(c.moveToNext()){
+                buffer.append("ID : "+c.getString(0)+" \nName : "+c.getString(1)+"\nPassword : "+c.getString(2)+"\n");
+                Log.i("skjhf",buffer.toString());
+                Toast.makeText(this, ""+buffer.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
         btnSearch = findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent searchHospital = new Intent(SearchHospital.this, MainActivity.class);
-                searchHospital.putExtra("all", chkAllSearch.isChecked());
-                searchHospital.putExtra("state", spnState.getSelectedItem().toString());
-                searchHospital.putExtra("district", spnDistrict.getSelectedItem().toString());
+
+                sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putBoolean("all", chkAllSearch.isChecked());
+                if(!chkAllSearch.isChecked()){
+                    editor.putString("state", spnState.getSelectedItem().toString());
+                    editor.putString("district", spnDistrict.getSelectedItem().toString());
+                }
+
+                editor.commit();
+
+                startActivity(searchHospital);
 
             }
         });
