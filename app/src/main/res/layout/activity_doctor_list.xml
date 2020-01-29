@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DoctorList">
+
+    <TextView
+        android:id="@+id/doc"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Doctor"
+        android:textColor="#FA0808"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:fontFamily="sans-serif-smallcaps" />
+    <LinearLayout
+        android:layout_gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <ImageView
+            android:layout_margin="5dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/email"
+            />
+
+        <TextView
+            android:id="@+id/demail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:autoLink="all|web|map|email"
+            android:text="Address"
+            android:textColor="#FA0808"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            app:fontFamily="sans-serif-smallcaps" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <ImageView
+            android:layout_margin="5dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/email"
+            />
+
+        <TextView
+            android:id="@+id/ddetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Details"
+            android:textColor="#FA0808"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            app:fontFamily="sans-serif-smallcaps" />
+    </LinearLayout>
+    <LinearLayout
+            android:layout_gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+    <ImageView
+        android:layout_margin="5dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/email"
+        />
+
+        <TextView
+            android:id="@+id/dspe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Specialties"
+            android:textColor="#FA0808"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            app:fontFamily="sans-serif-smallcaps" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <ImageView
+            android:layout_margin="5dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_access_time_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/dtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Time"
+            android:textColor="#FA0808"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            app:fontFamily="sans-serif-smallcaps" />
+    </LinearLayout>
+
+</LinearLayout>

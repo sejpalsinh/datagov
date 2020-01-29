@@ -1,0 +1,34 @@
+{
+  "hospitallist":[
+    {
+      "h_id":"2",
+      "h_name":"N M Virani Wockhardt Hospital",
+      "h_pgflag":"p"
+    },
+    {
+      "h_id":"3",
+      "h_name":"Christ Hospital Internation",
+      "h_pgflag":"p"
+    },
+    {
+      "h_id":"4",
+      "h_name":"KALRAV HOSPITAL",
+      "h_pgflag":"p"
+    },
+    {
+      "h_id":"5",
+      "h_name":"Sterling Hospital",
+      "h_pgflag":"p"
+    },
+    {
+      "h_id":"6",
+      "h_name":"Amrutaa Hospital",
+      "h_pgflag":"p"
+    },
+    {
+      "h_id":"7",
+      "h_name":"GOVT. Civil Hospital",
+      "h_pgflag":"g"
+    }
+  ]
+}

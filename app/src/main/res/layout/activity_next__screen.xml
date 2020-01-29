@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bright_color"
+    android:orientation="vertical"
+    tools:context=".Next_Screen">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@color/bright_color">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/hname"
+                        android:layout_width="match_parent"
+                        android:layout_height="64dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="Hospital_name"
+                        android:textColor="#FA0808"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        app:fontFamily="sans-serif-smallcaps" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="10sp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/address" />
+
+                    <TextView
+                        android:id="@+id/add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="Address"
+                        android:textColor="#FA0808"
+                        android:textSize="18dp"
+                        android:textStyle="italic"
+                        app:fontFamily="sans-serif-smallcaps" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="10sp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="5dp"
+
+                        android:src="@drawable/contect" />
+
+                    <TextView
+                        android:id="@+id/number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="Address"
+
+                        android:textColor="#FA0808"
+                        android:textSize="18dp"
+                        android:textStyle="italic"
+                        app:fontFamily="sans-serif-smallcaps" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="10sp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/email" />
+
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:autoLink="all|web|map|email"
+                        android:text="Address"
+                        android:textColor="#FA0808"
+                        android:textSize="18dp"
+                        android:textStyle="italic"
+                        app:fontFamily="sans-serif-smallcaps" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="10sp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/website" />
+
+                    <TextView
+                        android:id="@+id/website"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:autoLink="all|web|map|email"
+                        android:text="Address"
+                        android:textColor="#FA0808"
+                        android:textSize="18dp"
+                        android:textStyle="italic"
+                        app:fontFamily="sans-serif-smallcaps" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="10sp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/locationlink" />
+
+                    <TextView
+                        android:id="@+id/locationlink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:autoLink="all|web|map|email"
+                        android:text="Address"
+                        android:textColor="#FA0808"
+                        android:textSize="18dp"
+                        android:textStyle="italic"
+                        app:fontFamily="sans-serif-smallcaps" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="30sp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/time" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="Address"
+                        android:textColor="#FA0808"
+                        android:textSize="18dp"
+                        android:textStyle="italic"
+                        app:fontFamily="sans-serif-smallcaps" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/show_facility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10sp"
+                    android:gravity="center"
+                    android:text="facilities"
+                    android:textColor="#FA0808"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    app:fontFamily="sans-serif-smallcaps" />
+
+                <TextView
+                    android:id="@+id/fac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="10sp"
+                    android:text="list"
+                    android:textColor="#FA0808"
+                    android:textSize="18dp"
+                    android:textStyle="italic"
+                    app:fontFamily="sans-serif-smallcaps" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Doctor"
+                    android:textColor="#FA0808"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    app:fontFamily="sans-serif-smallcaps" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/doctor_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:context=".Next_Screen" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</LinearLayout>

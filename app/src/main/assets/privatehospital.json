@@ -1,0 +1,79 @@
+{
+  "hospitallist":[
+    {
+      "h_id":"2",
+      "h_name":"N M Virani Wockhardt Hospital",
+      "h_pgflag":"p",
+      "h_address":"Kalawad Road Near St. Mary's High School, Rajkot, Gujarat 360007",
+      "h_number":"0281 669 4444",
+      "h_email":"wokheart@gmail.com",
+      "h_website":"https:\/\/rajkot.wockhardthospitals.com",
+      "h_location":"https:\/\/goo.gl\/maps\/SoVQS7UX6JHDxw4C9",
+      "disable":"0",
+      "rating":"5",
+      "h_time":"24 hours",
+      "h_username":"wokheart@gmail.com",
+      "h_password":"1234"
+    },
+    {
+      "h_id":"3",
+      "h_name":"Christ Hospital Internation",
+      "h_pgflag":"p",
+      "h_address":"Jamnagar Road, Rajkot - 360006, Behind Dwarkadhis ...",
+      "h_number":"080000 03336",
+      "h_email":"ChristHospitalInternational @gmail.com",
+      "h_website":"http:\/\/www.christhospital.in\/",
+      "h_location":"https:\/\/goo.gl\/maps\/8TPdJP1NnJ5q57EM7",
+      "disable":"0",
+      "rating":"4",
+      "h_time":"24 hours",
+      "h_username":"Christ Hospital International ",
+      "h_password":"1234"
+    },
+    {
+      "h_id":"4",
+      "h_name":"KALRAV HOSPITAL",
+      "h_pgflag":"p",
+      "h_address":"Near, Navjyot Park Main Rd, Near giriraj hospital,...",
+      "h_number":"0281 258 9148",
+      "h_email":"KALRAVHOSPITAL@gmail.com",
+      "h_website":"https:\/\/kalravhospital.com",
+      "h_location":"https:\/\/goo.gl\/maps\/39ePYDwBoZZ7tTqD8",
+      "disable":"0",
+      "rating":"4",
+      "h_time":"24 hours",
+      "h_username":"KALRAVHOSPITAL@gmail.com",
+      "h_password":"1234"
+    },
+    {
+      "h_id":"5",
+      "h_name":"Sterling Hospital",
+      "h_pgflag":"p",
+      "h_address":"Plot No 251, 150 Feet Ring Road, Raiya Circle, Raj...",
+      "h_number":"2813985885",
+      "h_email":"sterlinghospitals@gmail.com",
+      "h_website":"http:\/\/www.sterlinghospitals.com\/",
+      "h_location":"https:\/\/goo.gl\/maps\/wNoNMnKTJmodnLBS6",
+      "disable":"0",
+      "rating":"5",
+      "h_time":"24 hours",
+      "h_username":"sterlinghospitals@gmail.com",
+      "h_password":"1234"
+    },
+    {
+      "h_id":"6",
+      "h_name":"Amrutaa Hospital",
+      "h_pgflag":"p",
+      "h_address":"150 Feet Ring Road, Raiya Rd, Kidwai Nagar Society...",
+      "h_number":"0281 258 8812",
+      "h_email":"AmrutaaHospital@gmail.com",
+      "h_website":"https:\/\/amrutahospitals.com",
+      "h_location":"https:\/\/goo.gl\/maps\/5MVehtHNJAaYohMNA",
+      "disable":"0",
+      "rating":"5",
+      "h_time":"24 hours",
+      "h_username":"AmrutaaHospital@gmail.com",
+      "h_password":"1234"
+    }
+  ]
+}

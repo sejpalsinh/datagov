@@ -1,0 +1,34 @@
+{
+  "hospitallist":[
+    {
+      "h_id":"1",
+      "h_name":"Arogya Kendra",
+      "h_pgflag":"g",
+      "h_address":"Jamnagar Road, Hospital Chowk, opp. SBI, Rajkot, Gujarat 360001",
+      "h_number":"0281 247 1118",
+      "h_email":"civil@gmail.com",
+      "h_website":"www.civil.com",
+      "h_location":"https:\/\/goo.gl\/maps\/q87NUKeB7jcc5fyb6",
+      "disable":"1",
+      "rating":"5",
+      "h_time":"24 hours",
+      "h_username":"civil@gmail.com",
+      "h_password":"1234"
+    },
+    {
+      "h_id":"7",
+      "h_name":"GOVT. Civil Hospital",
+      "h_pgflag":"g",
+      "h_address":"Jamnagar Road, Hospital Chowk, opp. SBI, Rajkot, G...",
+      "h_number":"0281 247 1118",
+      "h_email":"civilhospital@gmail.com",
+      "h_website":"https:\/\/civilhospital.com",
+      "h_location":"https:\/\/goo.gl\/maps\/vr4ikEsthLuXfxnK7",
+      "disable":"0",
+      "rating":"5",
+      "h_time":"24 hours",
+      "h_username":"civilhospital@gmail.com",
+      "h_password":"1234"
+    }
+  ]
+}
