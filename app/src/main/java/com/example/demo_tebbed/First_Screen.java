@@ -19,7 +19,7 @@ public class First_Screen extends AppCompatActivity {
         hospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(First_Screen.this,MainActivity.class);
+                Intent intent = new Intent(First_Screen.this,SearchHospital.class);
                 startActivity(intent);
             }
         });

@@ -78,11 +78,11 @@ public class doupdate extends AppCompatActivity {
         setContentView(R.layout.activity_doupdate);
         sqbd = new SqliteDatabse(this);
 
-        sqbd.addHospital(12344,"hello","hi","hello","hi","hello","hi","hello","hi","hello","hi");
-        //fetchDataHospital();
-        fetchDataBloodbank();
-       // fetchDataFacilities();
-        //fetchDataDoctor();
+        //sqbd.addHospital(12344,"hello","hi","hello","hi","hello","hi","hello","hi","hello","hi");
+        fetchDataHospital();
+//        fetchDataBloodbank();
+//        fetchDataFacilities();
+//        fetchDataDoctor();
 
 
         Cursor c = sqbd.showData();

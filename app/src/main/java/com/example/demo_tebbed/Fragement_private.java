@@ -100,6 +100,8 @@ public class Fragement_private extends Fragment {
         customAdapter = new CustomAdapter(mExampleList,getContext());
         recyclerView.setAdapter(customAdapter);
     }
+
+
     public String loadJSONFromAsset() {
         String json = null;
         try {
