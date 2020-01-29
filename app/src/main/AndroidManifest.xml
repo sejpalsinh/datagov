@@ -5,9 +5,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/hospital"
@@ -19,7 +18,8 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <activity android:name=".Next_scree_Update"></activity>
-        <activity android:name=".doupdate" />
+
+        <activity android:name=".doupdate"></activity>
         <activity android:name=".faqs" />
         <activity android:name=".Notification" />
         <activity android:name=".BloodBankDetails" />
@@ -37,6 +37,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".SearchHospital">
+
     </application>
 
 </manifest>
