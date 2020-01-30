@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">RMC HealthApp</string>
+    <string name="app_name">Find Hospital</string>
     <string name="action_settings">action</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="serchlist">
-
         <item>Child specialist</item>
         <item>Heart specialist</item>
         <item>Woman specialist</item>
