@@ -232,11 +232,7 @@ public class SqliteDatabse extends SQLiteOpenHelper {
 
     }
 
-//    public Cursor showData(){
-//        SQLiteDatabase db =this.getWritableDatabase();
-//        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_DOCTOR, null);
-//        return (res);
-//    }
+
 
 
     public void deleteAll()
@@ -282,7 +278,7 @@ public class SqliteDatabse extends SQLiteOpenHelper {
                             case Cursor.FIELD_TYPE_BLOB   : row.put(colName, crs.getBlob(i).toString()); break;
                             case Cursor.FIELD_TYPE_FLOAT  : row.put(colName, crs.getDouble(i))         ; break;
                             case Cursor.FIELD_TYPE_INTEGER: row.put(colName, crs.getLong(i))           ; break;
-                            case Cursor.FIELD_TYPE_NULL   : row.put(colName, null)                     ; break;
+                            case Cursor.FIELD_TYPE_NULL   : row.put(colName, null)               ; break;
                             case Cursor.FIELD_TYPE_STRING : row.put(colName, crs.getString(i))         ; break;
                         }
                     } catch (JSONException e) {
