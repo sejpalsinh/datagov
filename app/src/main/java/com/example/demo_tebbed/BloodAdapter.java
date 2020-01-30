@@ -41,6 +41,7 @@ public class BloodAdapter extends RecyclerView.Adapter<BloodAdapter.ViewHolder> 
             public void onClick(View view) {
                 Intent intent = new Intent(context,Bloodbank_show.class);
                 intent.putExtra("b_id",String.valueOf(id));
+                System.out.println("iiiiiiiiiiiiiiii :"+id);
                 context.startActivity(intent);
                 Toast.makeText(context, String.valueOf(id), Toast.LENGTH_SHORT).show();
             }
