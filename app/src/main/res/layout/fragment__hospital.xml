@@ -3,13 +3,190 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white_color"
     tools:context=".Fragment_Hospital">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hospital Data" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/hname"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Hospital_name"
+                    android:textColor="#FA0808"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    app:fontFamily="sans-serif-smallcaps" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginBottom="10sp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/address" />
+
+                <TextView
+                    android:id="@+id/hadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Address"
+                    android:textColor="#FA0808"
+                    android:textSize="18dp"
+                    android:textStyle="italic"
+                    app:fontFamily="sans-serif-smallcaps" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginBottom="10sp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="5dp"
+
+                    android:src="@drawable/contect" />
+
+                <TextView
+                    android:id="@+id/hnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Address"
+
+                    android:textColor="#FA0808"
+                    android:textSize="18dp"
+                    android:textStyle="italic"
+                    app:fontFamily="sans-serif-smallcaps" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginBottom="10sp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/email" />
+
+                <TextView
+                    android:id="@+id/hemail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:autoLink="all|web|map|email"
+                    android:text="Address"
+                    android:textColor="#FA0808"
+                    android:textSize="18dp"
+                    android:textStyle="italic"
+                    app:fontFamily="sans-serif-smallcaps" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginBottom="10sp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/website" />
+
+                <TextView
+                    android:id="@+id/hwebsite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:autoLink="all|web|map|email"
+                    android:text="Address"
+                    android:textColor="#FA0808"
+                    android:textSize="18dp"
+                    android:textStyle="italic"
+                    app:fontFamily="sans-serif-smallcaps" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginBottom="10sp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/locationlink" />
+
+                <TextView
+                    android:id="@+id/hlocationlink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:autoLink="all|web|map|email"
+                    android:text="Address"
+                    android:textColor="#FA0808"
+                    android:textSize="18dp"
+                    android:textStyle="italic"
+                    app:fontFamily="sans-serif-smallcaps" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginBottom="30sp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/time" />
+
+                <TextView
+                    android:id="@+id/htime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Address"
+                    android:textColor="#FA0808"
+                    android:textSize="18dp"
+                    android:textStyle="italic"
+                    app:fontFamily="sans-serif-smallcaps" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

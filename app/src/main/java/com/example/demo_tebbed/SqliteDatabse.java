@@ -253,7 +253,20 @@ public class SqliteDatabse extends SQLiteOpenHelper {
 
         db.close();
     }
+    public String showHospi(int i){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL +" WHERE h_id=" + i , null);
+        String r = cursorToString(res);
+        return r;
 
+    }
+    public String showFacilities(int i){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_FACILITIES +" WHERE h_id=" + i , null);
+        String r = cursorToString(res);
+        return r;
+
+    }
 
 
     public String cursorToString(Cursor crs) {
