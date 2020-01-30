@@ -54,7 +54,7 @@ public class First_Screen extends AppCompatActivity {
         faqs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(First_Screen.this,doupdate.class);
+                Intent intent = new Intent(First_Screen.this,faqs.class);
                 startActivity(intent);
             }
         });

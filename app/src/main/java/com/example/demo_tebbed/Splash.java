@@ -77,23 +77,7 @@ public class Splash extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void stopProgress(View view) {
-        bar.stopProgress();
-    }
-
-    public void startProgress(View view) {
-        bar.startProgress();
-    }
 
 
 }
