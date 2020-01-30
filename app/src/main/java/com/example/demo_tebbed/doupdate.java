@@ -162,16 +162,16 @@ public class doupdate extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         jsonObject = jsonArray.getJSONObject(i);
                         h_id = Integer.parseInt(jsonObject.getString("h_id"));
-                        h_name = "'"+jsonObject.getString("h_name")+"'";
-                        h_pgflag = "'"+jsonObject.getString("h_pgflag")+"'";
-                        h_address = "'"+jsonObject.getString("h_address")+"'";
-                        h_state = "'"+jsonObject.getString("h_state")+"'";
-                        h_dist = "'"+jsonObject.getString("h_dist")+"'";
-                        h_number = "'"+jsonObject.getString("h_number")+"'";
-                        h_email = "'"+jsonObject.getString("h_email")+"'";
-                        h_website = "'"+jsonObject.getString("h_website")+"'";
-                        h_location = "'"+jsonObject.getString("h_location")+"'";
-                        h_time = "'"+jsonObject.getString("h_time")+"'";
+                        h_name = jsonObject.getString("h_name");
+                        h_pgflag = jsonObject.getString("h_pgflag");
+                        h_address = jsonObject.getString("h_address");
+                        h_state = jsonObject.getString("h_state");
+                        h_dist = jsonObject.getString("h_dist");
+                        h_number = jsonObject.getString("h_number");
+                        h_email = jsonObject.getString("h_email");
+                        h_website = jsonObject.getString("h_website");
+                        h_location = jsonObject.getString("h_location");
+                        h_time = jsonObject.getString("h_time");
 
                         hadd = sqbd.addHospital(h_id,h_name,h_pgflag,h_address,h_state,h_dist,h_number,h_email,h_website,h_location,h_time);
                     }
