@@ -71,14 +71,16 @@ public class doupdate extends AppCompatActivity {
     int b_abp;
     int b_abn;
 
-    SqliteDatabse sqbd;
+    static public SqliteDatabse sqbd;
     boolean hadd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doupdate);
-
+        upDateNow();
+        startActivity(new Intent(getApplicationContext(),First_Screen.class));
+        finish();
 
 
 //        Cursor c = sqbd.showData();
@@ -252,9 +254,9 @@ public class doupdate extends AppCompatActivity {
     }
 
     public void updateData(View view) {
-        upDateNow();
+
     }
-    void upDateNow()
+    public void upDateNow()
     {
         sqbd = new SqliteDatabse(this);
         sqbd.deleteAll();
@@ -263,6 +265,8 @@ public class doupdate extends AppCompatActivity {
         fetchDataBloodbank();
         fetchDataFacilities();
         fetchDataDoctor();
+        startActivity(new Intent(getApplicationContext(),First_Screen.class));
+        finish();
     }
 
     public void temp_bb(View view) {
