@@ -111,9 +111,6 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         contentValues.put(COL_9,hwebsite);
         contentValues.put(COL_10,hlocation);
         contentValues.put(COL_11,htime);
-
-
-
         long result = db.insert(TABLE_HOSPITAL,null,contentValues);
         if(result == -1){
             return false;
@@ -122,9 +119,6 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         }
 
     }
-
-
-
 
     public boolean addFacilities(int fid,String fname,int hid){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -176,9 +170,6 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         contentValues.put(BCOL_15,bon);
         contentValues.put(BCOL_16,babp);
         contentValues.put(BCOL_17,babn);
-
-
-
         long result = db.insert(TABLE_BLOODBANK,null,contentValues);
         if(result == -1){
             return false;
@@ -202,7 +193,13 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         String r = cursorToString(res);
         res.close();
         return r;
-
+    }
+    public String showBloodbank(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_BLOODBANK, null);
+        String r = cursorToString(res);
+        res.close();
+        return r;
     }
 
     public String ShowDoctorData(int h_id){

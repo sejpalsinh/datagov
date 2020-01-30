@@ -189,7 +189,6 @@ public class SearchHospital extends AppCompatActivity {
             for(int i = 0; i < arrAllStates.length(); i++){
                 JSONObject object = arrAllStates.getJSONObject(i);
                 String oneState = object.getString("state");
-                Log.i("state", oneState);
                 allStates.add(oneState);
             }
 

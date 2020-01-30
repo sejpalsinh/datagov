@@ -160,36 +160,36 @@ public class Fragement_All extends Fragment {
         customAdapter.filterList(filteredList);
     }
 
-    public void fetchDataFromInternet() throws JSONException {
-        JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
-        JSONArray jsonArray = jsonObject.getJSONArray("hospitallist");
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject json = jsonArray.getJSONObject(i);
-            int id = json.getInt("h_id");
-            String name = json.getString("h_name");
-            String pgflag = json.getString("h_pgflag");
-            Iteam iteam = new Iteam(id,name,pgflag);
-            mExampleList.add(iteam);
-        }
-        customAdapter = new CustomAdapter(mExampleList,getContext());
-        recyclerView.setAdapter(customAdapter);
-    }
-
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getActivity().getAssets().open("allhospitaldata.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
+//    public void fetchDataFromInternet() throws JSONException {
+//        JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
+//        JSONArray jsonArray = jsonObject.getJSONArray("hospitallist");
+//        for (int i = 0; i < jsonArray.length(); i++) {
+//            JSONObject json = jsonArray.getJSONObject(i);
+//            int id = json.getInt("h_id");
+//            String name = json.getString("h_name");
+//            String pgflag = json.getString("h_pgflag");
+//            Iteam iteam = new Iteam(id,name,pgflag);
+//            mExampleList.add(iteam);
+//        }
+//        customAdapter = new CustomAdapter(mExampleList,getContext());
+//        recyclerView.setAdapter(customAdapter);
+//    }
+//
+//    public String loadJSONFromAsset() {
+//        String json = null;
+//        try {
+//            InputStream is = getActivity().getAssets().open("allhospitaldata.json");
+//            int size = is.available();
+//            byte[] buffer = new byte[size];
+//            is.read(buffer);
+//            is.close();
+//            json = new String(buffer, "UTF-8");
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//        return json;
+//    }
+//
 
 }
