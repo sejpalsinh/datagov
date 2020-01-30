@@ -27,7 +27,9 @@
         <activity android:name=".SearchBySpeciality" />
         <activity android:name=".DoctorList" />
         <activity android:name=".Next_Screen" />
-        <activity android:name=".First_Screen" />
+        <activity android:name=".First_Screen"
+            android:theme="@style/AppTheme1"
+            />
         <activity android:name=".NoInternet" />
         <activity android:name=".Splash">
             <intent-filter>

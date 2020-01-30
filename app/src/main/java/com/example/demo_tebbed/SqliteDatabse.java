@@ -193,6 +193,14 @@ public class SqliteDatabse extends SQLiteOpenHelper {
 
     }
 
+    public String showBloodbank(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_BLOODBANK, null);
+        String r = cursorToString(res);
+        res.close();
+        return r;
+    }
+
     public String ShowDoctorData(int h_id){
         SQLiteDatabase db =this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT "+ DCOL_2 + ", " + DCOL_3 + ", " + DCOL_5 + ", " + DCOL_4 + " FROM " + TABLE_DOCTOR + " WHERE " + DCOL_6 + " = " + h_id, null);
