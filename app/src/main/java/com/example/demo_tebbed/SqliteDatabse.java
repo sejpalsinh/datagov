@@ -196,6 +196,23 @@ public class SqliteDatabse extends SQLiteOpenHelper {
 
     }
 
+    public String showDoctorName(int h_id){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT "+ DCOL_1 + ", " + DCOL_2 + " FROM "+ TABLE_DOCTOR + " WHERE " + DCOL_6 + " = " + h_id, null);
+        String r = cursorToString(res);
+        res.close();
+        return r;
+
+    }
+
+    public String ShowDoctorData(int h_id){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT "+ DCOL_2 + ", " + DCOL_3 + ", " + DCOL_5 + ", " + DCOL_4 + " FROM " + TABLE_DOCTOR + " WHERE " + DCOL_6 + " = " + h_id, null);
+        String r = cursorToString(res);
+        res.close();
+        return r;
+    }
+
     public String showSelectedHospitals(String state, String district){
         SQLiteDatabase db =this.getWritableDatabase();
         //Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
@@ -221,7 +238,7 @@ public class SqliteDatabse extends SQLiteOpenHelper {
 
     public Cursor showData(){
         SQLiteDatabase db =this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_DOCTOR, null);
         return (res);
     }
 
@@ -236,6 +253,8 @@ public class SqliteDatabse extends SQLiteOpenHelper {
 
         db.close();
     }
+
+
 
     public String cursorToString(Cursor crs) {
         JSONArray arr = new JSONArray();

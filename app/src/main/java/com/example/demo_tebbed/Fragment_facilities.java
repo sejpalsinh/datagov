@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 public class Fragment_facilities extends Fragment {
 
 
-
+    int id = Next_scree_Update.h_id;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

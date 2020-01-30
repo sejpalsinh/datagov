@@ -80,9 +80,9 @@ public class doupdate extends AppCompatActivity {
 
         //sqbd.addHospital(12344,"hello","hi","hello","hi","hello","hi","hello","hi","hello","hi");
         fetchDataHospital();
-//        fetchDataBloodbank();
-//        fetchDataFacilities();
-//        fetchDataDoctor();
+        fetchDataBloodbank();
+        fetchDataFacilities();
+        fetchDataDoctor();
 
 
         Cursor c = sqbd.showData();
@@ -92,7 +92,7 @@ public class doupdate extends AppCompatActivity {
         }else{
             StringBuffer buffer = new StringBuffer();
             while(c.moveToNext()){
-                buffer.append("ID : "+c.getString(0)+" \nName : "+c.getString(1)+"\nPassword : "+c.getString(2)+"\n");
+                buffer.append("ID : "+c.getString(5)+" \nName : "+c.getString(1)+"\nPassword : "+c.getString(2)+"\n");
                 Log.i("skjhf",buffer.toString());
                 Toast.makeText(this, ""+buffer.toString(), Toast.LENGTH_SHORT).show();
             }
