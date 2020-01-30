@@ -38,12 +38,8 @@ public class Fragement_All extends Fragment {
 
     ArrayList<Iteam> mExampleList;
     RecyclerView recyclerView;
-    StringRequest stringRequest;
-    RequestQueue requestQueue;
-    String url = "http://rmcfindhospital.dx.am/hospitaldata.php";
     CustomAdapter customAdapter;
     EditText editText;
-
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -67,20 +63,14 @@ public class Fragement_All extends Fragment {
 
         sqliteDatabse = new SqliteDatabse(getActivity());
         String result = sqliteDatabse.showHospitals();
-
         if(all){
-            //fetchDataFromInternet();
-
             System.out.println(result);
-
             try {
                 fillHospitalsFromDB(result);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         } else {
-
             String state = sharedPreferences.getString("state", "");
             String district = sharedPreferences.getString("district", "");
             if(state.equals("") || state.equals("Select State")){
@@ -101,14 +91,6 @@ public class Fragement_All extends Fragment {
 
             }
         }
-
-
-//        try {
-//            fetchDataFromInternet();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//            System.out.println("locah locah all locha : "+e);
-//        }
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -160,36 +142,7 @@ public class Fragement_All extends Fragment {
         customAdapter.filterList(filteredList);
     }
 
-    public void fetchDataFromInternet() throws JSONException {
-        JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
-        JSONArray jsonArray = jsonObject.getJSONArray("hospitallist");
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject json = jsonArray.getJSONObject(i);
-            int id = json.getInt("h_id");
-            String name = json.getString("h_name");
-            String pgflag = json.getString("h_pgflag");
-            Iteam iteam = new Iteam(id,name,pgflag);
-            mExampleList.add(iteam);
-        }
-        customAdapter = new CustomAdapter(mExampleList,getContext());
-        recyclerView.setAdapter(customAdapter);
-    }
 
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getActivity().getAssets().open("allhospitaldata.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
 
 
 }

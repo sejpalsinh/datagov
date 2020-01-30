@@ -3,10 +3,12 @@ package com.example.demo_tebbed;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -76,28 +78,21 @@ public class doupdate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doupdate);
-        sqbd = new SqliteDatabse(this);
-
-        //sqbd.addHospital(12344,"hello","hi","hello","hi","hello","hi","hello","hi","hello","hi");
-        fetchDataHospital();
-        fetchDataBloodbank();
-        fetchDataFacilities();
-        fetchDataDoctor();
 
 
-        Cursor c = sqbd.showData();
-        if(c.getCount() == 0){
 
-            return;
-        }else{
-            StringBuffer buffer = new StringBuffer();
-            while(c.moveToNext()){
-                buffer.append("ID : "+c.getString(5)+" \nName : "+c.getString(1)+"\nPassword : "+c.getString(2)+"\n");
-                Log.i("skjhf",buffer.toString());
-                Toast.makeText(this, ""+buffer.toString(), Toast.LENGTH_SHORT).show();
-            }
-
-        }
+//        Cursor c = sqbd.showData();
+//        if(c.getCount() == 0){
+//            return;
+//        }else{
+//            StringBuffer buffer = new StringBuffer();
+//            while(c.moveToNext()){
+//                buffer.append("ID : "+c.getString(5)+" \nName : "+c.getString(1)+"\nPassword : "+c.getString(2)+"\n");
+//                Log.i("skjhf",buffer.toString());
+//                Toast.makeText(this, ""+buffer.toString(), Toast.LENGTH_SHORT).show();
+//            }
+//
+//        }
 
     }
 
@@ -254,6 +249,24 @@ public class doupdate extends AppCompatActivity {
             }
         });
         requestQueue.add(stringRequest);
+    }
+
+    public void updateData(View view) {
+        upDateNow();
+    }
+    void upDateNow()
+    {
+        sqbd = new SqliteDatabse(this);
+        sqbd.deleteAll();
+        sqbd = new SqliteDatabse(this);
+        fetchDataHospital();
+        fetchDataBloodbank();
+        fetchDataFacilities();
+        fetchDataDoctor();
+    }
+
+    public void temp_bb(View view) {
+        startActivity(new Intent(getApplicationContext(),Bloodbank_show.class));
     }
 }
 

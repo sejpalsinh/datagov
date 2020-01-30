@@ -32,7 +32,7 @@ public class Fragment_Hospital extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment__hospital,null);
 
-        Toast.makeText(getActivity(), String.valueOf(id), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), String.valueOf(id), Toast.LENGTH_LONG).show();
         Log.i("stast", String.valueOf(id));
         hname = view.findViewById(R.id.hname);
         adderess = view.findViewById(R.id.hadd);

@@ -1,7 +1,6 @@
 package com.example.demo_tebbed;
 
-import android.content.Context;
-import android.net.Uri;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,8 +35,6 @@ public class Fragment_doctor extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_doctor,null);
-
-
 
         sqliteDatabse = new SqliteDatabse(getContext());
         String doctors = sqliteDatabse.showDoctorName(id);

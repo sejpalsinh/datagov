@@ -37,9 +37,6 @@ public class SearchHospital extends AppCompatActivity {
     JSONObject jsonAllStatesInfo;
     JSONArray arrAllStates;
     ArrayAdapter<String> adapterStates;
-
-    FragmentManager fragmentManager;
-
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -58,19 +55,18 @@ public class SearchHospital extends AppCompatActivity {
 
         sqbd = new SqliteDatabse(this);
 
-        Cursor c = sqbd.showData();
-        if(c.getCount() == 0){
-
-            return;
-        }else{
-            StringBuffer buffer = new StringBuffer();
-            while(c.moveToNext()){
-                buffer.append("ID : "+c.getString(0)+" \nName : "+c.getString(1)+"\nPassword : "+c.getString(2)+"\n");
-                Log.i("skjhf",buffer.toString());
-                Toast.makeText(this, ""+buffer.toString(), Toast.LENGTH_SHORT).show();
-            }
-
-        }
+//        Cursor c = sqbd.showData();
+//        if(c.getCount() == 0){
+//
+//            return;
+//        }else{
+//            StringBuffer buffer = new StringBuffer();
+//            while(c.moveToNext()){
+//                buffer.append("ID : "+c.getString(0)+" \nName : "+c.getString(1)+"\nPassword : "+c.getString(2)+"\n");
+//                Log.i("skjhf",buffer.toString());
+//            }
+//
+//        }
 
         btnSearch = findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {

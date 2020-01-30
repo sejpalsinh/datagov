@@ -33,9 +33,6 @@ import java.util.ArrayList;
 public class Fragement_GOV extends Fragment {
     ArrayList<Iteam> mExampleList;
     RecyclerView recyclerView;
-    StringRequest stringRequest;
-    RequestQueue requestQueue;
-    String url = "http://rmcfindhospital.dx.am/gov.php";
     CustomAdapter customAdapter;
     EditText editText;
     @Nullable
