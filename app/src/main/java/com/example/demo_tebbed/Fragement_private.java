@@ -1,9 +1,12 @@
 package com.example.demo_tebbed;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +41,11 @@ public class Fragement_private extends Fragment {
     String url = "http://rmcfindhospital.dx.am/private.php";
     CustomAdapter customAdapter;
     EditText editText;
+
+    SqliteDatabse sqliteDatabse;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,12 +58,43 @@ public class Fragement_private extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        try {
-            fetchDataFromInternet();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            System.out.println("locah locah private locha : "+e);
+        sharedPreferences = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        boolean all = sharedPreferences.getBoolean("all", true);
+
+        sqliteDatabse = new SqliteDatabse(getActivity());
+
+        if(all){
+            try {
+                String result = sqliteDatabse.showAllPrivateHospitals();
+                fetchPrivateHospitalsDB(result);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            String state = sharedPreferences.getString("state", "");
+            String district = sharedPreferences.getString("district", "");
+
+            if(state.equals("") || state.equals("Select State")){
+                String result = sqliteDatabse.showAllPrivateHospitals();
+                System.out.println(result);
+                try {
+                    fetchPrivateHospitalsDB(result);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                String result = sqliteDatabse.showAllPrivateHospitals(state, district);
+                System.out.println(result);
+                try {
+                    fetchPrivateHospitalsDB(result);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,6 +113,26 @@ public class Fragement_private extends Fragment {
         });
         return view;
     }
+
+    private void fetchPrivateHospitalsDB(String result) throws JSONException {
+        JSONArray jsonArray = new JSONArray(result);
+
+        mExampleList.clear();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject json = jsonArray.getJSONObject(i);
+            Log.i("adapter1", Integer.toString(i) + json.toString());
+            int id = json.getInt("h_id");
+            String name = json.getString("h_name");
+            String pgflag = json.getString("h_pgflag");
+            Iteam iteam = new Iteam(id,name,pgflag);
+            mExampleList.add(iteam);
+        }
+
+        customAdapter = new CustomAdapter(mExampleList,getContext());
+        recyclerView.setAdapter(customAdapter);
+    }
+
     private void filter(String text) {
         ArrayList<Iteam> filteredList = new ArrayList<Iteam>();
 
