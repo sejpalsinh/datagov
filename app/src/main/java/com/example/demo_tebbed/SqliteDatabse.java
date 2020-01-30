@@ -63,6 +63,7 @@ public class SqliteDatabse extends SQLiteOpenHelper {
 
     public SqliteDatabse(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
+
     }
 
     @Override
@@ -84,16 +85,7 @@ public class SqliteDatabse extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_HOSPITAL);
-        deleteAll();
         onCreate(db);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FACILITIES);
-//        onCreate(db);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCTOR);
-//        onCreate(db);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BLOODBANK);
-//        onCreate(db);
     }
 
     public boolean addHospital(int hid,String hname,String hpgflag,String haddress,String hstate,String hdist,String hnumber,String hemail,String hwebsite ,String hlocation,String htime){
@@ -111,8 +103,6 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         contentValues.put(COL_9,hwebsite);
         contentValues.put(COL_10,hlocation);
         contentValues.put(COL_11,htime);
-
-
 
         long result = db.insert(TABLE_HOSPITAL,null,contentValues);
         if(result == -1){
@@ -176,8 +166,6 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         contentValues.put(BCOL_15,bon);
         contentValues.put(BCOL_16,babp);
         contentValues.put(BCOL_17,babn);
-
-
 
         long result = db.insert(TABLE_BLOODBANK,null,contentValues);
         if(result == -1){
@@ -266,24 +254,34 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         return r;
     }
 
-    public Cursor showData(){
-        SQLiteDatabase db =this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_DOCTOR, null);
-        return (res);
-    }
+
 
 
     public void deleteAll()
     {
-        //SQLiteDatabase db = this.getWritableDatabase();
-        // db.delete(TABLE_NAME,null,null);
-        //db.execSQL("delete * from"+ TABLE_NAME);
         SQLiteDatabase db =this.getWritableDatabase();
-        db.execSQL("delete from " + TABLE_HOSPITAL);
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_HOSPITAL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BLOODBANK);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCTOR);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FACILITIES);
+        onCreate(db);
         db.close();
-    }
 
+    }
+    public String showHospi(int i){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL +" WHERE h_id=" + i , null);
+        String r = cursorToString(res);
+        return r;
+
+    }
+    public String showFacilities(int i){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_FACILITIES +" WHERE h_id=" + i , null);
+        String r = cursorToString(res);
+        return r;
+
+    }
 
 
     public String cursorToString(Cursor crs) {
@@ -302,7 +300,7 @@ public class SqliteDatabse extends SQLiteOpenHelper {
                             case Cursor.FIELD_TYPE_BLOB   : row.put(colName, crs.getBlob(i).toString()); break;
                             case Cursor.FIELD_TYPE_FLOAT  : row.put(colName, crs.getDouble(i))         ; break;
                             case Cursor.FIELD_TYPE_INTEGER: row.put(colName, crs.getLong(i))           ; break;
-                            case Cursor.FIELD_TYPE_NULL   : row.put(colName, null)                     ; break;
+                            case Cursor.FIELD_TYPE_NULL   : row.put(colName, null)               ; break;
                             case Cursor.FIELD_TYPE_STRING : row.put(colName, crs.getString(i))         ; break;
                         }
                     } catch (JSONException e) {

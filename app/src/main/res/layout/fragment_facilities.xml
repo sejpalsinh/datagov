@@ -3,13 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white_color"
     tools:context=".Fragment_facilities">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Facility Data" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fshow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10sp"
+                android:gravity="center"
+                android:text="facilities"
+                android:textColor="#FA0808"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:fontFamily="sans-serif-smallcaps" />
+
+            <TextView
+                android:id="@+id/flist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="10sp"
+                android:text="list"
+                android:textColor="#FA0808"
+                android:textSize="18dp"
+                android:textStyle="italic"
+                app:fontFamily="sans-serif-smallcaps" />
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

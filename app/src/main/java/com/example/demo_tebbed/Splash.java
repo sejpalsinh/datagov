@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import java.util.TimerTask;
 
 public class Splash extends AppCompatActivity {
     DottedProgressBar bar;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +32,10 @@ public class Splash extends AppCompatActivity {
         ProgressBar progressBar = (ProgressBar)findViewById(R.id.spin_kit);
         Sprite doubleBounce = new DoubleBounce();
         progressBar.setIndeterminateDrawable(doubleBounce);
+        sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
+        editor.putString("fristtime","done");
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -50,41 +56,28 @@ public class Splash extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+                if(sharedPreferences.getString("fristtime","not").equals("not"))
+                {
+                    editor.putString("fristtime","yes");
+                    editor.apply();
+                    startActivity(new Intent(getApplicationContext(),doupdate.class));
+                    finish();
+                }
                 else {
                     Intent intent = new Intent(Splash.this, First_Screen.class);
                     startActivity(intent);
                     finish();}
             }
-        }, 4000);
+        }, 3000);
 
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
 
-    public void stopProgress(View view) {
-        bar.stopProgress();
-    }
-
-    public void startProgress(View view) {
-        bar.startProgress();
-    }
 }

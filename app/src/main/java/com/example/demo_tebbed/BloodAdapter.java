@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -37,9 +39,11 @@ public class BloodAdapter extends RecyclerView.Adapter<BloodAdapter.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,BloodBankDetails.class);
+                Intent intent = new Intent(context,Bloodbank_show.class);
                 intent.putExtra("b_id",String.valueOf(id));
+                System.out.println("iiiiiiiiiiiiiiii :"+id);
                 context.startActivity(intent);
+                Toast.makeText(context, String.valueOf(id), Toast.LENGTH_SHORT).show();
             }
         });
     }

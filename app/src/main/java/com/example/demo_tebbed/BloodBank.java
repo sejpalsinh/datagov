@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 public class BloodBank extends AppCompatActivity {
     ArrayList<Doctor> mExampleList;
     RecyclerView recyclerView;
+    SqliteDatabse sqliteDatabse;
     StringRequest stringRequest;
     RequestQueue requestQueue;
     String url = "http://rmcfindhospital.dx.am/blooddata.php";
@@ -42,7 +44,16 @@ public class BloodBank extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
-        fetchDataFromInternet();
+
+        sqliteDatabse = new SqliteDatabse(getApplicationContext());
+        String result = sqliteDatabse.showBloodbank();
+
+
+        try {
+            fillBloodbankFromDB(result);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -56,6 +67,23 @@ public class BloodBank extends AppCompatActivity {
             }
         });
     }
+
+    private void fillBloodbankFromDB(String result) throws JSONException {
+        JSONArray jsonArray = new JSONArray(result);
+
+        mExampleList.clear();
+        Log.i("arrLen", String.valueOf(jsonArray.length()));
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject json = jsonArray.getJSONObject(i);
+            int id = json.getInt("b_id");
+            String name = json.getString("b_name");
+            Doctor iteam = new Doctor(id,name);
+            mExampleList.add(iteam);
+        }
+        bloodAdapter = new BloodAdapter(mExampleList,this);
+        recyclerView.setAdapter(bloodAdapter);
+    }
     private void filter(String text) {
         ArrayList<Doctor> filteredList = new ArrayList<Doctor>();
 
@@ -66,38 +94,38 @@ public class BloodBank extends AppCompatActivity {
         }
         bloodAdapter.filterList(filteredList);
     }
-    public void fetchDataFromInternet() {
-
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-        requestQueue = Volley.newRequestQueue(this);
-        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("bloodlist");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject json = jsonArray.getJSONObject(i);
-                        int id = json.getInt("b_id");
-                        String name = json.getString("b_name");
-                        Doctor iteam = new Doctor(id,name);
-                        mExampleList.add(iteam);
-                    }
-                    bloodAdapter = new BloodAdapter(mExampleList,getApplicationContext());
-                    recyclerView.setAdapter(bloodAdapter);
-                    progressDialog.dismiss();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        });
-        requestQueue.add(stringRequest);
-    }
+//    public void fetchDataFromInternet() {
+//
+//        final ProgressDialog progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Loading...");
+//        progressDialog.show();
+//        requestQueue = Volley.newRequestQueue(this);
+//        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    JSONArray jsonArray = jsonObject.getJSONArray("bloodlist");
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        JSONObject json = jsonArray.getJSONObject(i);
+//                        int id = json.getInt("b_id");
+//                        String name = json.getString("b_name");
+//                        Doctor iteam = new Doctor(id,name);
+//                        mExampleList.add(iteam);
+//                    }
+//                    bloodAdapter = new BloodAdapter(mExampleList,getApplicationContext());
+//                    recyclerView.setAdapter(bloodAdapter);
+//                    progressDialog.dismiss();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//            }
+//        });
+//        requestQueue.add(stringRequest);
+//    }
 
 }

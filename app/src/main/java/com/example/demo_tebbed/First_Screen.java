@@ -5,6 +5,9 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 public class First_Screen extends AppCompatActivity {
@@ -51,10 +54,20 @@ public class First_Screen extends AppCompatActivity {
         faqs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(First_Screen.this,doupdate.class);
+                Intent intent = new Intent(First_Screen.this,faqs.class);
                 startActivity(intent);
             }
         });
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void update(MenuItem item) {
+        startActivity(new Intent(getApplicationContext(),doupdate.class));
     }
 }
