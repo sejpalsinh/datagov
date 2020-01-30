@@ -3,6 +3,7 @@ package com.example.demo_tebbed;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebView;
 
@@ -20,7 +21,9 @@ public class Bloodbank_show extends AppCompatActivity {
         vistaWeb.clearHistory();
         vistaWeb.getSettings().setJavaScriptEnabled(true);
         vistaWeb.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        int id = 2;
+        Intent intent = getIntent();
+        String s = intent.getStringExtra("b_id");
+        int id = Integer.parseInt(s);
         vistaWeb .loadUrl("http://findhospital.tonysolutions.co/showbloodbank.php?b_id="+id);
     }
 }

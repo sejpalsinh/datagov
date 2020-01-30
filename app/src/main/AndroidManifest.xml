@@ -18,7 +18,6 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".BloodBankDetails"></activity>
         <activity android:name=".Next_scree_Update" />
         <activity android:name=".doupdate" />
         <activity android:name=".faqs" />
