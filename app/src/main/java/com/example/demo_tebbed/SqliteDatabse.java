@@ -187,9 +187,62 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         }
     }
 
-    public String showHospitals(){
+    public String showAllHospitals(){
         SQLiteDatabase db =this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
+        String r = cursorToString(res);
+        res.close();
+        return r;
+
+    }
+    public String showAllHospitals(String state, String district){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL
+                + " WHERE " + COL_5 + " LIKE '%"+ state + "%'"
+                + " AND " + COL_6 + " LIKE '%"+ district + "%'", null);
+        String r = cursorToString(res);
+        res.close();
+        return r;
+
+    }
+
+    public String showAllGovtHospitals(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL + " WHERE " + COL_3 + " LIKE '%g%'", null);
+        String r = cursorToString(res);
+        res.close();
+        return r;
+
+    }
+
+    public String showAllGovtHospitals(String state, String district){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL
+                + " WHERE " + COL_5 + " LIKE '%"+ state + "%'"
+                + " AND " + COL_6 + " LIKE '%"+ district + "%'"
+                + " AND " + COL_3 + " LIKE '%g%'", null);
+        String r = cursorToString(res);
+        res.close();
+        return r;
+
+    }
+
+    public String showAllPrivateHospitals(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL + " WHERE " + COL_3 + " LIKE '%p%'", null);
+        String r = cursorToString(res);
+        res.close();
+        return r;
+
+    }
+
+    public String showAllPrivateHospitals(String state, String district){
+        SQLiteDatabase db =this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL
+                + " WHERE " + COL_5 + " LIKE '%"+ state + "%'"
+                + " AND " + COL_6 + " LIKE '%"+ district + "%'"
+                + " AND " + COL_3 + " LIKE '%p%'", null);
         String r = cursorToString(res);
         res.close();
         return r;
@@ -211,29 +264,6 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         String r = cursorToString(res);
         res.close();
         return r;
-    }
-
-    public String showSelectedHospitals(String state, String district){
-        SQLiteDatabase db =this.getWritableDatabase();
-        //Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL, null);
-
-        if(district == null){
-            Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL + " WHERE " + COL_5 + " LIKE '%" + state + "%'", null);
-            String resSecHos = cursorToString(res);
-            res.close();
-            return resSecHos;
-        } else {
-            Cursor res = db.rawQuery("SELECT * FROM "+ TABLE_HOSPITAL + " WHERE " + COL_5 + " LIKE '%" + state + "%' " + " AND " + COL_6 + " LIKE '%" + district + "%'", null);
-            String resSecHos = cursorToString(res);
-            res.close();
-            return resSecHos;
-
-        }
-
-
-
-
-
     }
 
     public Cursor showData(){
@@ -287,5 +317,6 @@ public class SqliteDatabse extends SQLiteOpenHelper {
         crs.close(); // close the cursor
         return arr.toString();
     }
+
 
 }
