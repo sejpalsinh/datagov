@@ -7,9 +7,10 @@
     tools:context=".Fragment_doctor">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDoctor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Doctor Data" />
+        android:layout_height="match_parent" />
+
 
 </FrameLayout>

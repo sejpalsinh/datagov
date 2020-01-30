@@ -65,12 +65,12 @@ public class Fragement_All extends Fragment {
 
         boolean all = sharedPreferences.getBoolean("all", true);
 
+        sqliteDatabse = new SqliteDatabse(getActivity());
+        String result = sqliteDatabse.showHospitals();
 
         if(all){
             //fetchDataFromInternet();
 
-            sqliteDatabse = new SqliteDatabse(getActivity());
-            String result = sqliteDatabse.showHospitals();
             System.out.println(result);
 
             try {
@@ -79,6 +79,27 @@ public class Fragement_All extends Fragment {
                 e.printStackTrace();
             }
 
+        } else {
+
+            String state = sharedPreferences.getString("state", "");
+            String district = sharedPreferences.getString("district", "");
+            if(state.equals("") || state.equals("Select State")){
+                try {
+                    fillHospitalsFromDB(result);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.i("lowerS", state);
+                String stateHospital = sqliteDatabse.showSelectedHospitals(state, district);
+                Log.i("lowerS", stateHospital);
+                try {
+                    fillHospitalsFromDB(stateHospital);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
 
 
@@ -153,6 +174,7 @@ public class Fragement_All extends Fragment {
         customAdapter = new CustomAdapter(mExampleList,getContext());
         recyclerView.setAdapter(customAdapter);
     }
+
     public String loadJSONFromAsset() {
         String json = null;
         try {
@@ -168,5 +190,6 @@ public class Fragement_All extends Fragment {
         }
         return json;
     }
+
 
 }

@@ -2,6 +2,7 @@ package com.example.demo_tebbed;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     ArrayList<Iteam> mExampleList;
     Context context;
+
 
     public CustomAdapter(ArrayList<Iteam> exampleList,Context context) {
         mExampleList = exampleList;
@@ -41,7 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,Next_scree_Update.class);
-                intent.putExtra("id",String.valueOf(id));
+                intent.putExtra("id",id);
                 context.startActivity(intent);
             }
         });

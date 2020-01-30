@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -29,6 +30,8 @@ public class DoctorList extends AppCompatActivity {
     String d_details= " ";
     String d_speciality= " ";
     String d_time= " ";
+
+    SqliteDatabse sqliteDatabse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +47,35 @@ public class DoctorList extends AppCompatActivity {
         int id = Integer.parseInt(did);
 
         url  = "http://rmcfindhospital.dx.am/doc.php?id="+id;
-        fetchDataFromInternet();
+        //fetchDataFromInternet();
+        fetchDataFromDB();
 
     }
+
+    private void fetchDataFromDB() {
+        sqliteDatabse = new SqliteDatabse(getApplicationContext());
+        String docList = sqliteDatabse.ShowDoctorData(Next_scree_Update.h_id);
+        try {
+            JSONArray json = new JSONArray(docList);
+            for (int i = 0; i < json.length(); i++) {
+                JSONObject jsonObject = json.getJSONObject(i);
+                Log.i("adapter1", Integer.toString(i) + json.toString());
+
+                d_name = jsonObject.getString("d_name");
+                d_email= jsonObject.getString("d_email");
+                d_details= jsonObject.getString("d_details");
+                d_speciality= jsonObject.getString("d_speciality");
+            }
+            name.setText(d_name);
+            email.setText(d_email);
+            details.setText(d_details);
+            speciality.setText(d_speciality);
+            time.setText("10 hours");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void fetchDataFromInternet() {
 
         final ProgressDialog progressDialog = new ProgressDialog(this);

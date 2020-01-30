@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,11 +15,18 @@ public class Next_scree_Update extends AppCompatActivity {
     TextView camera,call,chat,status;
     PageViewAdepter2 pageViewAdepter;
     ViewPager viewPager;
+    public static int h_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next_scree__update);
         camera = findViewById(R.id.camera);
+
+        Intent intent = getIntent();
+        h_id = intent.getIntExtra("id", 0);
+
+
 
         status = findViewById(R.id.status);
         chat = findViewById(R.id.chat);
