@@ -30,6 +30,7 @@
         <activity android:name=".First_Screen"
             android:theme="@style/AppTheme1"
             />
+        <activity android:name=".Bloodbank_show"/>
         <activity android:name=".NoInternet" />
         <activity android:name=".Splash">
             <intent-filter>
