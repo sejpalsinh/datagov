@@ -49,7 +49,6 @@ public class DoctorList extends AppCompatActivity {
         url  = "http://rmcfindhospital.dx.am/doc.php?id="+id;
         //fetchDataFromInternet();
         fetchDataFromDB();
-
     }
 
     private void fetchDataFromDB() {

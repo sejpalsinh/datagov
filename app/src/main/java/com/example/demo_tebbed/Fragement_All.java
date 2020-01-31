@@ -1,7 +1,6 @@
 package com.example.demo_tebbed;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -26,12 +24,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class Fragement_All extends Fragment {
@@ -62,8 +56,10 @@ public class Fragement_All extends Fragment {
         boolean all = sharedPreferences.getBoolean("all", true);
 
         sqliteDatabse = new SqliteDatabse(getActivity());
-        String result = sqliteDatabse.showHospitals();
+      
         if(all){
+            //fetchDataFromInternet();
+            String result = sqliteDatabse.showAllHospitals();
             System.out.println(result);
             try {
                 fillHospitalsFromDB(result);
@@ -73,22 +69,23 @@ public class Fragement_All extends Fragment {
         } else {
             String state = sharedPreferences.getString("state", "");
             String district = sharedPreferences.getString("district", "");
+
             if(state.equals("") || state.equals("Select State")){
+                String result = sqliteDatabse.showAllHospitals();
+                System.out.println(result);
                 try {
                     fillHospitalsFromDB(result);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else {
-                Log.i("lowerS", state);
-                String stateHospital = sqliteDatabse.showSelectedHospitals(state, district);
-                Log.i("lowerS", stateHospital);
+                String result = sqliteDatabse.showAllHospitals(state, district);
+                System.out.println(result);
                 try {
-                    fillHospitalsFromDB(stateHospital);
+                    fillHospitalsFromDB(result);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }
         editText.addTextChangedListener(new TextWatcher() {

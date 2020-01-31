@@ -78,30 +78,15 @@ public class doupdate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doupdate);
+        System.out.println("update start update start");
         upDateNow();
+        System.out.println("update end update end");
         startActivity(new Intent(getApplicationContext(),First_Screen.class));
         finish();
-
-
-//        Cursor c = sqbd.showData();
-//        if(c.getCount() == 0){
-//            return;
-//        }else{
-//            StringBuffer buffer = new StringBuffer();
-//            while(c.moveToNext()){
-//                buffer.append("ID : "+c.getString(5)+" \nName : "+c.getString(1)+"\nPassword : "+c.getString(2)+"\n");
-//                Log.i("skjhf",buffer.toString());
-//                Toast.makeText(this, ""+buffer.toString(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//        }
 
     }
 
     public void fetchDataBloodbank() {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
         requestQueue = Volley.newRequestQueue(doupdate.this);
         stringRequest = new StringRequest(Request.Method.GET, burl, new Response.Listener<String>() {
             @Override
@@ -132,7 +117,6 @@ public class doupdate extends AppCompatActivity {
                         System.out.println("bloodbank"+response);
                         hadd = sqbd.addBloodbank(b_id,b_name,b_email,b_address,b_website,b_location,b_number,b_state,b_dist,b_ap,b_an,b_bp,b_bn,b_op,b_on,b_abp,b_abn);
                     }
-                    progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -146,9 +130,6 @@ public class doupdate extends AppCompatActivity {
     }
 
     public void fetchDataHospital() {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
         requestQueue = Volley.newRequestQueue(doupdate.this);
         stringRequest = new StringRequest(Request.Method.GET, hurl, new Response.Listener<String>() {
             @Override
@@ -172,8 +153,6 @@ public class doupdate extends AppCompatActivity {
 
                         hadd = sqbd.addHospital(h_id,h_name,h_pgflag,h_address,h_state,h_dist,h_number,h_email,h_website,h_location,h_time);
                     }
-
-                    progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -188,9 +167,6 @@ public class doupdate extends AppCompatActivity {
 
     public void fetchDataFacilities() {
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
         requestQueue = Volley.newRequestQueue(doupdate.this);
         stringRequest = new StringRequest(Request.Method.GET, furl, new Response.Listener<String>() {
             @Override
@@ -206,7 +182,6 @@ public class doupdate extends AppCompatActivity {
                         hadd = sqbd.addFacilities(f_id,f_name,fh_id);
                     }
                     System.out.println("facilities");
-                    progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -219,9 +194,6 @@ public class doupdate extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
     public void fetchDataDoctor() {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
         requestQueue = Volley.newRequestQueue(doupdate.this);
         stringRequest = new StringRequest(Request.Method.GET, durl, new Response.Listener<String>() {
             @Override
@@ -240,7 +212,6 @@ public class doupdate extends AppCompatActivity {
                         hadd = sqbd.addDoctor(d_id,d_name,d_email,d_details,d_speciality,dh_id);
                     }
                     System.out.println("doctor");
-                    progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -253,9 +224,6 @@ public class doupdate extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    public void updateData(View view) {
-
-    }
     public void upDateNow()
     {
         sqbd = new SqliteDatabse(this);
